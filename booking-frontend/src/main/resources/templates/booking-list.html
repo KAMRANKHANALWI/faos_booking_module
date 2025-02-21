@@ -4,18 +4,30 @@
     <title>Bookings</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 py-10">
-<h2 class="text-4xl font-bold text-gray-800 text-center mb-6">Your Bookings</h2>
-<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div th:each="booking : ${bookings}" class="bg-white p-6 rounded-xl shadow-lg">
-        <h3 class="text-xl font-semibold text-indigo-600">Booking ID: <span th:text="${booking.bookingId}"></span></h3>
-        <p class="text-gray-600 mt-2">Date: <span th:text="${booking.bookingDate}"></span></p>
-        <p class="text-gray-600">Amount: <span th:text="${booking.amount}"></span></p>
-        <p class="text-blue-500 font-semibold mt-2">Status: <span th:text="${booking.bookingStatus}"></span></p>
-    </div>
+<body class="bg-gray-50 p-10">
+<h2 class="text-3xl font-semibold text-gray-800 text-center mb-6">Bookings List</h2>
+<div class="max-w-5xl mx-auto">
+    <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-gray-200">
+        <tr>
+            <th class="py-3 px-6">ID</th>
+            <th class="py-3 px-6">Booking Date</th>
+            <th class="py-3 px-6">Amount</th>
+            <th class="py-3 px-6">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="booking : ${bookings}" class="border-t">
+            <td class="py-4 px-6" th:text="${booking.bookingId}"></td>
+            <td class="py-4 px-6" th:text="${booking.bookingDate}"></td>
+            <td class="py-4 px-6" th:text="${booking.amount}"></td>
+            <td class="py-4 px-6 text-blue-500 font-medium" th:text="${booking.bookingStatus}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
-<div class="text-center mt-8">
-    <a href="/" class="px-6 py-3 bg-gray-600 text-white rounded-lg shadow-md hover:bg-gray-700">Back to Home</a>
+<div class="text-center mt-6">
+    <a href="/" class="px-6 py-3 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600">Back to Home</a>
 </div>
 </body>
 </html>
