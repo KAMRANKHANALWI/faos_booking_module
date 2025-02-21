@@ -2,44 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Bookings</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="container mt-5">
-<h2>Bookings List</h2>
-
-<!-- Error Handling -->
-<div th:if="${errorMessage}" class="alert alert-danger" role="alert">
-    <strong>Error:</strong> <span th:text="${errorMessage}"></span>
+<body class="bg-gray-100 py-10">
+<h2 class="text-4xl font-bold text-gray-800 text-center mb-6">Your Bookings</h2>
+<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div th:each="booking : ${bookings}" class="bg-white p-6 rounded-xl shadow-lg">
+        <h3 class="text-xl font-semibold text-indigo-600">Booking ID: <span th:text="${booking.bookingId}"></span></h3>
+        <p class="text-gray-600 mt-2">Date: <span th:text="${booking.bookingDate}"></span></p>
+        <p class="text-gray-600">Amount: <span th:text="${booking.amount}"></span></p>
+        <p class="text-blue-500 font-semibold mt-2">Status: <span th:text="${booking.bookingStatus}"></span></p>
+    </div>
 </div>
-
-<table class="table table-striped mt-3">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Booking Date</th>
-        <th>Delivery Date</th>
-        <th>Payment Mode</th>
-        <th>Payment Status</th>
-        <th>Booking Status</th>
-        <th>Additional Charges</th>
-        <th>Amount</th>
-        <th>Total Amount</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="booking : ${bookings}">
-        <td th:text="${booking.bookingId}"></td>
-        <td th:text="${booking.bookingDate}"></td>
-        <td th:text="${booking.deliveryDate}"></td>
-        <td th:text="${booking.paymentMode}"></td>
-        <td th:text="${booking.paymentStatus}"></td>
-        <td th:text="${booking.bookingStatus}"></td>
-        <td th:text="${booking.additionalCharges}"></td>
-        <td th:text="${booking.amount}"></td>
-        <td th:text="${booking.totalAmount}"></td>
-    </tr>
-    </tbody>
-</table>
-<a href="/" class="btn btn-secondary">Back to Home</a>
+<div class="text-center mt-8">
+    <a href="/" class="px-6 py-3 bg-gray-600 text-white rounded-lg shadow-md hover:bg-gray-700">Back to Home</a>
+</div>
 </body>
 </html>
